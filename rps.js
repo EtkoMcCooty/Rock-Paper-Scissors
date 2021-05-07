@@ -1,14 +1,14 @@
-function computerPlay () {
+    // Store scores
+    var playerScore = 0;
+    var computerScore = 0;
+
+let computerPlay = () => {
     // Create variable to store choices
     const computerChoice = ['rock', 'paper', 'scissors'];
     return computerChoice[Math.floor(Math.random() * 3)];
 }
 
-function playRound (playerSelection, computerSelection) {
-    // Store computer's selection
-    //computerSelection = computerPlay();
-    // Prompt player to pick an option
-    //playerSelection = prompt('What do you choose (Rock, Paper or Scissors: ');
+let playRound = (playerSelection, computerSelection) => {
     // Change playerSelection text to lowercase
     playerSelection.toLowerCase();
     // Return a message declaring the winner
@@ -16,32 +16,45 @@ function playRound (playerSelection, computerSelection) {
     if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')) {
-        return `You Win! ${playerSelection} beats ${computerSelection}!`;
-    }
+            console.log('Player Wins');
+            playerScore++;
+            return `You Win! ${playerSelection} beats ${computerSelection}!`;
+        }
     // For lose conditions
     else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
              (playerSelection === 'paper' && computerSelection === 'scissors') ||
              (playerSelection === 'scissors' && computerSelection === 'rock')) {
-            return `You Lose! ${computerSelection} beats ${playerSelection}!`;
+                console.log('CPU Wins!');
+                computerScore++;
+                return `You Lose! ${computerSelection} beats ${playerSelection}!`;
         }
     // For a draw
     else {
+        console.log('Draw!');
+        playerScore++;
+        computerScore++;
         return 'It\'s a draw!';
     }
 }
 
 function game () {
-    // Store scores
-    let playerScore = 0;
-    let computerScore = 0;
 
     // play 5 rounds
+    // Each round, give one point to the winner
     for (i = 1; i <= 5; i++) {
         console.log(i);
         playRound(prompt('What do you choose? (Rock, Paper or Scissors?'), computerPlay());
-    // Each round, give one pint to the winner
+        console.log(`Player: ${playerScore}`);
+        console.log(`CPU: ${computerScore}`);
+
     }
-    // Whoever wins the most rounds wins the game
+    // Determine Winner
+    let message = (playerScore > computerScore) ? `Player: ${playerScore}\nCPU: ${computerScore}\n\nPlayer Wins!` : 
+                 (playerScore < computerScore) ? `Player: ${playerScore}\nCPU: ${computerScore}\n\nCPU Wins!` :
+                 `Player: ${playerScore}\nCPU: ${computerScore}\n\nIt\'s a draw!`
+
+    console.log(message);
+    return message;
 }
 
 game();
