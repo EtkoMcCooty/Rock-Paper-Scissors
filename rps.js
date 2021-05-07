@@ -5,7 +5,29 @@ function computerPlay () {
 }
 
 function playRound (playerSelection, computerSelection) {
-
+    // Store computer's selection
+    //computerSelection = computerPlay();
+    // Prompt player to pick an option
+    //playerSelection = prompt('What do you choose (Rock, Paper or Scissors: ');
+    // Change playerSelection text to lowercase
+    playerSelection.toLowerCase();
+    // Return a message declaring the winner
+    // For win conditions
+    if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
+        (playerSelection === 'paper' && computerSelection === 'rock') ||
+        (playerSelection === 'scissors' && computerSelection === 'paper')) {
+        return `You Win! ${playerSelection} beats ${computerSelection}!`;
+    }
+    // For lose conditions
+    else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
+             (playerSelection === 'paper' && computerSelection === 'scissors') ||
+             (playerSelection === 'scissors' && computerSelection === 'rock')) {
+            return `You Lose! ${computerSelection} beats ${playerSelection}!`;
+        }
+    // For a draw
+    else {
+        return 'It\'s a draw!';
+    }
 }
 
-console.log(computerPlay());
+console.log(playRound(prompt('What do you choose (Rock, Paper or Scissors: '), computerPlay()));
