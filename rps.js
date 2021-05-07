@@ -30,4 +30,18 @@ function playRound (playerSelection, computerSelection) {
     }
 }
 
-console.log(playRound(prompt('What do you choose (Rock, Paper or Scissors: '), computerPlay()));
+function game () {
+    // Store scores
+    let playerScore = 0;
+    let computerScore = 0;
+
+    // play 5 rounds
+    for (i = 1; i <= 5; i++) {
+        console.log(i);
+        playRound(prompt('What do you choose? (Rock, Paper or Scissors?'), computerPlay());
+    // Each round, give one pint to the winner
+    }
+    // Whoever wins the most rounds wins the game
+}
+
+game();
