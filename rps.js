@@ -11,8 +11,7 @@ let computerPlay = () => {
 
 
 let playRound = (playerSelection, computerSelection) => {
-    // Change playerSelection text to lowercase
-    playerSelection.toLowerCase();
+    console.log(playerSelection);
     // Return a message declaring the winner
     // For win conditions
     if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
@@ -38,21 +37,29 @@ let playRound = (playerSelection, computerSelection) => {
 
 function game () {
 
-    // play 5 rounds
-    // Each round, give one point to the winner
-    for (i = 1; i <= 5; i++) {
-        console.log(i);
-        playRound(prompt('What do you choose? (Rock, Paper or Scissors?'), computerPlay());
-        console.log(`Player: ${playerScore}`);
-        console.log(`CPU: ${computerScore}`);
-
-    }
-    // Determine Winner
-    let message = (playerScore > computerScore) ? `Player: ${playerScore}\nCPU: ${computerScore}\n\nPlayer Wins!` : 
-                 (playerScore < computerScore) ? `Player: ${playerScore}\nCPU: ${computerScore}\n\nCPU Wins!` :
-                 `Player: ${playerScore}\nCPU: ${computerScore}\n\nBoth players draw the same amount of games resulting in a draw!`
-
-    return console.log(message); 
+    
 }
+
+// Create a button for each selection
+const rock = document.createElement('button');
+rock.textContent = 'Rock';
+rock.addEventListener('click', () => {
+    playRound('rock', computerPlay());
+});
+container.appendChild(rock);
+
+const paper = document.createElement('button');
+paper.textContent = 'Paper';
+paper.addEventListener('click', () => {
+    playRound('paper', computerPlay());
+});
+container.appendChild(paper);
+
+const scissors = document.createElement('button');
+scissors.textContent = 'Scissors';
+scissors.addEventListener('click', () => {
+    playRound('scissors', computerPlay());
+});
+container.appendChild(scissors);
 
 game();
