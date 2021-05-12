@@ -14,6 +14,16 @@ container.appendChild(results);
 const gameLog = document.createElement('div');
 container.appendChild(gameLog);
 
+// Create button elements
+const rock = document.createElement('button');
+rock.textContent = 'Rock';
+
+const paper = document.createElement('button');
+paper.textContent = 'Paper';
+
+const scissors = document.createElement('button');
+scissors.textContent = 'Scissors';
+
 // function to update results div
 let updateResults = () =>
     {
@@ -68,7 +78,9 @@ let playRound = (playerSelection, computerSelection) => {
     }
 }
 let declareWinner = (winner) => {
-    return `${winner} has reached 5 points, ${winner} wins!`;
+    const p = document.createElement('p');
+    p.textContent = `${winner} has reached 5 points, ${winner} wins!`;
+    return gameLog.appendChild(p);
   }
 
 let removeButtons = () => {
@@ -79,29 +91,50 @@ let removeButtons = () => {
 
 let game = () => {
     // Create a button for each selection
-    const rock = document.createElement('button');
-    rock.textContent = 'Rock';
+    
     rock.addEventListener('click', () => {
         playRound('rock', computerPlay());
         
         if (playerScore === 5) {
             removeButtons();
+            declareWinner('Player');
+        }
+        else if (computerScore === 5) {
+            removeButtons();
+            declareWinner('Computer');
         }
 
     });
     container.appendChild(rock);
 
-    const paper = document.createElement('button');
-    paper.textContent = 'Paper';
+    
     paper.addEventListener('click', () => {
         playRound('paper', computerPlay());
+
+        if (playerScore === 5) {
+            removeButtons();
+            declareWinner('Player');
+        }
+        else if (computerScore === 5) {
+            removeButtons();
+            declareWinner('Computer');
+        }
+
     });
     container.appendChild(paper);
 
-    const scissors = document.createElement('button');
-    scissors.textContent = 'Scissors';
     scissors.addEventListener('click', () => {
         playRound('scissors', computerPlay());
+
+        if (playerScore === 5) {
+            removeButtons();
+            declareWinner('Player');
+        }
+        else if (computerScore === 5) {
+            removeButtons();
+            declareWinner('Computer');
+        }
+
     });
     container.appendChild(scissors);
 }
