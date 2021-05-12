@@ -1,12 +1,21 @@
-    // Store scores
-    var playerScore = 0;
-    var computerScore = 0;
+// Store scores
+var playerScore = 0;
+var computerScore = 0;
 
-    // store winner
-    var winner = ''
+// store winner
+var winner = '';
 
-    // function to update results div
-    let updateResults = () =>
+// Create div to display results
+const results = document.createElement('div');
+results.textContent = `Player Score: ${playerScore}\nCPU Score: ${computerScore}`;
+container.appendChild(results);
+
+// Create div to store logged game results
+const gameLog = document.createElement('div');
+container.appendChild(gameLog);
+
+// function to update results div
+let updateResults = () =>
     {
         // remove div from container
         container.removeChild(results);
@@ -27,7 +36,7 @@ let updateGameLog = (message) => {
     p.textContent = message;
    return gameLog.appendChild(p);
 }
-
+ 
 let playRound = (playerSelection, computerSelection) => {
     console.log(playerSelection);
     // Return a message declaring the winner
@@ -58,39 +67,33 @@ let playRound = (playerSelection, computerSelection) => {
         return updateGameLog('It\'s a draw!');
     }
 }
+let declareWinner = (winner) => {
+    return `${winner} has reached 5 points, ${winner} wins!`;
+  }
 
-function game () {
+let game = () => {
+    // Create a button for each selection
+    const rock = document.createElement('button');
+    rock.textContent = 'Rock';
+    rock.addEventListener('click', () => {
+        playRound('rock', computerPlay());
+        
+    });
+    container.appendChild(rock);
 
-    
+    const paper = document.createElement('button');
+    paper.textContent = 'Paper';
+    paper.addEventListener('click', () => {
+        playRound('paper', computerPlay());
+    });
+    container.appendChild(paper);
+
+    const scissors = document.createElement('button');
+    scissors.textContent = 'Scissors';
+    scissors.addEventListener('click', () => {
+        playRound('scissors', computerPlay());
+    });
+    container.appendChild(scissors);
 }
 
-// Create a button for each selection
-const rock = document.createElement('button');
-rock.textContent = 'Rock';
-rock.addEventListener('click', () => {
-    playRound('rock', computerPlay());
-});
-container.appendChild(rock);
-
-const paper = document.createElement('button');
-paper.textContent = 'Paper';
-paper.addEventListener('click', () => {
-    playRound('paper', computerPlay());
-});
-container.appendChild(paper);
-
-const scissors = document.createElement('button');
-scissors.textContent = 'Scissors';
-scissors.addEventListener('click', () => {
-    playRound('scissors', computerPlay());
-});
-container.appendChild(scissors);
-
-// Create div to display results
-const results = document.createElement('div');
-results.textContent = `Player Score: ${playerScore}\nCPU Score: ${computerScore}`;
-container.appendChild(results);
-
-// Create div to store logged game results
-const gameLog = document.createElement('div');
-container.appendChild(gameLog);
+game();
