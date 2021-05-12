@@ -22,6 +22,12 @@ let computerPlay = () => {
     return computerChoice[Math.floor(Math.random() * 3)];
 }
 
+let updateGameLog = (message) => {
+    const p = document.createElement('p');
+    p.textContent = message;
+   return gameLog.appendChild(p);
+}
+
 let playRound = (playerSelection, computerSelection) => {
     console.log(playerSelection);
     // Return a message declaring the winner
@@ -33,7 +39,7 @@ let playRound = (playerSelection, computerSelection) => {
             playerScore++;
             // update results 
             updateResults();
-            return console.log(`You Win! ${playerSelection} beats ${computerSelection}!`);
+            return updateGameLog(`You Win! ${playerSelection} beats ${computerSelection}!`);//console.log(`You Win! ${playerSelection} beats ${computerSelection}!`);
         }
     // For lose conditions
     else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
@@ -42,14 +48,14 @@ let playRound = (playerSelection, computerSelection) => {
                 winner = computerSelection
                 computerScore++;
                 updateResults();
-                return console.log(`You Lose! ${computerSelection} beats ${playerSelection}!`);
+                return updateGameLog(`You Lose! ${computerSelection} beats ${playerSelection}!`);
         }
     // For a draw
     else {
         playerScore++;
         computerScore++;
         updateResults();
-        return console.log('It\'s a draw!');
+        return updateGameLog('It\'s a draw!');
     }
 }
 
@@ -84,3 +90,7 @@ container.appendChild(scissors);
 const results = document.createElement('div');
 results.textContent = `Player Score: ${playerScore}\nCPU Score: ${computerScore}`;
 container.appendChild(results);
+
+// Create div to store logged game results
+const gameLog = document.createElement('div');
+container.appendChild(gameLog);
