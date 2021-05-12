@@ -2,13 +2,25 @@
     var playerScore = 0;
     var computerScore = 0;
 
+    // store winner
+    var winner = ''
+
+    // function to update results div
+    let updateResults = () =>
+    {
+        // remove div from container
+        container.removeChild(results);
+        // add text content
+        results.textContent = `Player Score: ${playerScore}\nCPU Score: ${computerScore}`;
+        // re-append results div to container
+        container.appendChild(results);
+    }
+
 let computerPlay = () => {
     // Create variable to store choices
     const computerChoice = ['rock', 'paper', 'scissors'];
     return computerChoice[Math.floor(Math.random() * 3)];
 }
-
-
 
 let playRound = (playerSelection, computerSelection) => {
     console.log(playerSelection);
@@ -17,20 +29,26 @@ let playRound = (playerSelection, computerSelection) => {
     if ((playerSelection === 'rock' && computerSelection === 'scissors') || 
         (playerSelection === 'paper' && computerSelection === 'rock') ||
         (playerSelection === 'scissors' && computerSelection === 'paper')) {
+            winner = playerSelection;
             playerScore++;
+            // update results 
+            updateResults();
             return console.log(`You Win! ${playerSelection} beats ${computerSelection}!`);
         }
     // For lose conditions
     else if ((playerSelection === 'rock' && computerSelection === 'paper') ||
              (playerSelection === 'paper' && computerSelection === 'scissors') ||
              (playerSelection === 'scissors' && computerSelection === 'rock')) {
+                winner = computerSelection
                 computerScore++;
+                updateResults();
                 return console.log(`You Lose! ${computerSelection} beats ${playerSelection}!`);
         }
     // For a draw
     else {
         playerScore++;
         computerScore++;
+        updateResults();
         return console.log('It\'s a draw!');
     }
 }
@@ -62,4 +80,7 @@ scissors.addEventListener('click', () => {
 });
 container.appendChild(scissors);
 
-game();
+// Create div to display results
+const results = document.createElement('div');
+results.textContent = `Player Score: ${playerScore}\nCPU Score: ${computerScore}`;
+container.appendChild(results);
