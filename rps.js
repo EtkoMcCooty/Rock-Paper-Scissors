@@ -71,6 +71,12 @@ let declareWinner = (winner) => {
     return `${winner} has reached 5 points, ${winner} wins!`;
   }
 
+let removeButtons = () => {
+    container.removeChild(rock);
+    container.removeChild(paper);
+    container.removeChild(scissors);
+}
+
 let game = () => {
     // Create a button for each selection
     const rock = document.createElement('button');
@@ -78,6 +84,10 @@ let game = () => {
     rock.addEventListener('click', () => {
         playRound('rock', computerPlay());
         
+        if (playerScore === 5) {
+            removeButtons();
+        }
+
     });
     container.appendChild(rock);
 
